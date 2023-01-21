@@ -3,20 +3,23 @@
 	"id": "sparklingstrikes",
 	"version": "${version}",
 	"name": "Sparkling Strikes",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Add fun particles whenever you land a strike on your foe!",
 	"authors": [
-		"Me!"
+		"Superkat32"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/sparklingstrikes/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.superkat.sparklingstrikes.ExampleMod"
+			"net.superkat.sparklingstrikes.SparklingMain"
+		],
+		"client": [
+			"net.superkat.sparklingstrikes.SparklingClient"
 		]
 	},
 	"mixins": [
