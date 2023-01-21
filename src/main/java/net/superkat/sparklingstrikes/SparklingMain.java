@@ -1,5 +1,6 @@
 package net.superkat.sparklingstrikes;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
@@ -16,8 +17,12 @@ public class SparklingMain implements ModInitializer {
 	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
 
 	//TODO - Change fabric.mod.json source stuff
+	//TODO - Create icon.png
 	@Override
 	public void onInitialize() {
+		//load config
+		MidnightConfig.init(MOD_ID, SparklingConfig.class);
+
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
 		LOGGER.info("Hello Fabric world!");
 	}
