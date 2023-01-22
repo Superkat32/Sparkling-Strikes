@@ -15,6 +15,7 @@ public class SparklingMain implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
+	public static final DefaultParticleType STAR = FabricParticleTypes.simple();
 
 	//TODO - Change fabric.mod.json source stuff
 	//TODO - Create icon.png
@@ -24,6 +25,7 @@ public class SparklingMain implements ModInitializer {
 		MidnightConfig.init(MOD_ID, SparklingConfig.class);
 
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
-		LOGGER.info("Hello Fabric world!");
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "star"), STAR);
+//		LOGGER.info("Hello Fabric world!");
 	}
 }

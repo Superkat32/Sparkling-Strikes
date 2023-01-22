@@ -1,3 +1,10 @@
 {
-  "sparklingstrikes.midnightconfig.particleAmount": "Particle Amount"
+  "sparklingstirkes.midnightconfig.title": "Sparkling Strikes Config",
+
+  "sparklingstrikes.midnightconfig.particleAmount": "Particle Amount",
+  "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
+  "sparklingstrikes.midnightconfig.particleOption.tooltip": "Which particle do you want to be spawned when hitting a mob?",
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.STAR": "Stars",
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.NONE": "None"
 }

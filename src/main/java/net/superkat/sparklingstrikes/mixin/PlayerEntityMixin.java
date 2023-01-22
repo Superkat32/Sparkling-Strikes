@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static net.superkat.sparklingstrikes.SparklingMain.LOGGER;
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends Entity {
 //	public World world;
@@ -24,10 +26,23 @@ public abstract class PlayerEntityMixin extends Entity {
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
 	private void spawnHitParticle(Entity target, CallbackInfo ci) {
 
-		SparklingMain.LOGGER.info("spawnHitParticle has been called!");
-		SparklingMain.LOGGER.info(String.valueOf(SparklingConfig.particleAmount));
+		LOGGER.info("spawnHitParticle has been called!");
+		LOGGER.info(String.valueOf(SparklingConfig.particleAmount));
 
-		((ServerWorld)this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+		switch (SparklingConfig.particleOption) {
+			case SPARKLE ->
+					((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+			case STAR ->
+					((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+			case NONE -> LOGGER.info("No particles shown! ParticleOption was set to none!");
+		}
+
+//		if (SparklingConfig.particleOption.equals(SparklingConfig.ParticleOption.SPARKLE)) {
+//			((ServerWorld)this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+//		} else if (SparklingConfig.particleOption.equals(SparklingConfig.ParticleOption.STAR)) {
+//			((ServerWorld)this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+//		}
+
 
 	}
 }

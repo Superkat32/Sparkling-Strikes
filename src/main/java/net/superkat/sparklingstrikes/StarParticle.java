@@ -7,25 +7,25 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class SparkleParticle extends SpriteBillboardParticle {
+public class StarParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
     //    private final double startX;
 //    private final double startY;
 //    private final double startZ;
 
-    SparkleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
+    StarParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
 //        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 40;
-        this.scale = 0.1F + this.random.nextFloat() / 2;
+        this.scale = 0.05F + this.random.nextFloat() / 6;
         this.velocityX = velocityX;
-        this.velocityY = velocityY;
+        this.velocityY = velocityY + 0.05;
         this.velocityZ = velocityZ;
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
-        this.angle = 1F;
+//        this.angle = 0.30F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
 //        this.velocityX = this.random.nextFloat() + 0.07;
 //        this.velocityY = 0;
@@ -60,7 +60,7 @@ public class SparkleParticle extends SpriteBillboardParticle {
             if (this.age <= 4) {
                 this.scale += 0.05;
             } else if (this.age - extraTime > 7) {
-                this.angle -= 0.06;
+//                this.angle -= 0.06;
 //                if (this.angle > 0) {
 //                } else if (this.angle < 0) {
 //                    SparkyStrikes.LOGGER.info("angle set to 0!");
@@ -86,7 +86,7 @@ public class SparkleParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new SparkleParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
+            return new StarParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
         }
     }
 }
