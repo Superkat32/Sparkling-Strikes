@@ -8,7 +8,7 @@ public class SparklingConfig extends MidnightConfig {
 
     @Entry public static ParticleOption particleOption = ParticleOption.SPARKLE;
     public enum ParticleOption {
-        SPARKLE, STAR, NONE
+        SPARKLE, STAR, HEART, NONE
     }
 
 }

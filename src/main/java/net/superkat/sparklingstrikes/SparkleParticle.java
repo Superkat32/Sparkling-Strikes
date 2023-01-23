@@ -9,9 +9,6 @@ import net.minecraft.particle.DefaultParticleType;
 @Environment(EnvType.CLIENT)
 public class SparkleParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
-    //    private final double startX;
-//    private final double startY;
-//    private final double startZ;
 
     SparkleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);

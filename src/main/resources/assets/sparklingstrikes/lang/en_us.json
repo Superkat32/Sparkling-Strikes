@@ -6,5 +6,6 @@
   "sparklingstrikes.midnightconfig.particleOption.tooltip": "Which particle do you want to be spawned when hitting a mob?",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.STAR": "Stars",
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.NONE": "None"
 }

@@ -10,6 +10,7 @@ public class SparklingClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(SparklingMain.SPARKLE, SparkleParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(SparklingMain.STAR, StarParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(SparklingMain.HEART, HeartParticle.Factory::new);
 
     }
 }
