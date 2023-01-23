@@ -1,4 +1,4 @@
-package net.superkat.sparklingstrikes;
+package net.superkat.sparklingstrikes.particles;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
