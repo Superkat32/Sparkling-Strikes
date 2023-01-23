@@ -15,7 +15,7 @@ public class StarParticle extends SpriteBillboardParticle {
 //        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 40;
-        this.scale = 0.05F + this.random.nextFloat() / 6;
+        this.scale = 0.05F + this.random.nextFloat() / 8;
         this.velocityX = velocityX;
         this.velocityY = velocityY + 0.05;
         this.velocityZ = velocityZ;
@@ -63,7 +63,7 @@ public class StarParticle extends SpriteBillboardParticle {
 //                    SparkyStrikes.LOGGER.info("angle set to 0!");
 //                    this.angle = 0;
 //                }
-                this.scale -= 0.25;
+                this.scale -= 0.10;
             }
             this.setSpriteForAge(this.spriteProvider);
             this.move(this.velocityX, this.velocityY, this.velocityZ);

@@ -63,7 +63,7 @@ public class SparkleParticle extends SpriteBillboardParticle {
 //                    SparkyStrikes.LOGGER.info("angle set to 0!");
 //                    this.angle = 0;
 //                }
-                this.scale -= 0.25;
+                this.scale -= 0.15;
             }
             this.setSpriteForAge(this.spriteProvider);
             this.move(this.velocityX, this.velocityY, this.velocityZ);
