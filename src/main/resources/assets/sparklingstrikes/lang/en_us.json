@@ -7,5 +7,6 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.STAR": "Stars",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.HEART": "Hearts",
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.NONE": "None"
 }

@@ -36,7 +36,10 @@ public abstract class PlayerEntityMixin extends Entity {
 					((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
 			case HEART ->
 					((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-			case NONE -> LOGGER.info("No particles shown! ParticleOption was set to none!");
+			case FLOWER ->
+					((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+			case NONE ->
+					LOGGER.info("No particles shown! ParticleOption was set to none!");
 		}
 
 //		if (SparklingConfig.particleOption.equals(SparklingConfig.ParticleOption.SPARKLE)) {
