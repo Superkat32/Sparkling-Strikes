@@ -25,29 +25,21 @@ public abstract class PlayerEntityMixin extends Entity {
 
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
 	private void spawnHitParticle(Entity target, CallbackInfo ci) {
+		if (SparklingConfig.modEnabled) {
+			LOGGER.info("spawnHitParticle has been called! (Total particles spawned: " + SparklingConfig.particleAmount + ")");
 
-		LOGGER.info("spawnHitParticle has been called! (Total particles spawned: " + SparklingConfig.particleAmount + ")");
-//		LOGGER.info(String.valueOf(SparklingConfig.particleAmount));
-
-		switch (SparklingConfig.particleOption) {
-			case SPARKLE ->
-					((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-			case STAR ->
-					((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-			case HEART ->
-					((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-			case FLOWER ->
-					((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-			case NONE ->
-					LOGGER.info("No particles shown! ParticleOption was set to none!");
+			switch (SparklingConfig.particleOption) {
+				case SPARKLE ->
+						((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+				case STAR ->
+						((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+				case HEART ->
+						((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+				case FLOWER ->
+						((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+			}
+		} else {
+			LOGGER.info("No particle shown; mod disabled");
 		}
-
-//		if (SparklingConfig.particleOption.equals(SparklingConfig.ParticleOption.SPARKLE)) {
-//			((ServerWorld)this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-//		} else if (SparklingConfig.particleOption.equals(SparklingConfig.ParticleOption.STAR)) {
-//			((ServerWorld)this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-//		}
-
-
 	}
 }
