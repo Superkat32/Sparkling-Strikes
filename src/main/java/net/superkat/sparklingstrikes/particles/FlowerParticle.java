@@ -33,18 +33,18 @@ public class FlowerParticle extends SpriteBillboardParticle {
         this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
         //The fifth number is to make it have a chance to be just white
-        int color = this.random.nextBetween(1, 5);
-        switch(color) {
-            case 1 -> {
-                this.setColor(0.8F + this.random.nextFloat() * 0.2F, 0.4F + this.random.nextFloat() * 0.3F, 0.8F + this.random.nextFloat() * 0.2F);
-            } case 2 -> {
-                this.setColor(0.7F + this.random.nextFloat() * 0.2F, 0.2F + this.random.nextFloat() * 0.3F, 0.6F + this.random.nextFloat() * 0.2F);
-            } case 3 -> {
-                this.setColor(0.8F + this.random.nextFloat() * 0.2F, 0.8F + this.random.nextFloat() * 0.3F, 0.3F + this.random.nextFloat() * 0.2F);
-            } case 4 -> {
-                this.setColor(0.6F + this.random.nextFloat() * 0.2F, 0.9F + this.random.nextFloat() * 0.3F, 0.1F + this.random.nextFloat() * 0.2F);
-            }
-        }
+//        int color = this.random.nextBetween(1, 5);
+//        switch(color) {
+//            case 1 -> {
+//                this.setColor(0.8F + this.random.nextFloat() * 0.2F, 0.4F + this.random.nextFloat() * 0.3F, 0.8F + this.random.nextFloat() * 0.2F);
+//            } case 2 -> {
+//                this.setColor(0.7F + this.random.nextFloat() * 0.2F, 0.2F + this.random.nextFloat() * 0.3F, 0.6F + this.random.nextFloat() * 0.2F);
+//            } case 3 -> {
+//                this.setColor(0.8F + this.random.nextFloat() * 0.2F, 0.8F + this.random.nextFloat() * 0.3F, 0.3F + this.random.nextFloat() * 0.2F);
+//            } case 4 -> {
+//                this.setColor(0.6F + this.random.nextFloat() * 0.2F, 0.9F + this.random.nextFloat() * 0.3F, 0.1F + this.random.nextFloat() * 0.2F);
+//            }
+//        }
     }
 
     public void tick() {
@@ -67,7 +67,7 @@ public class FlowerParticle extends SpriteBillboardParticle {
                     this.velocityZ *= 1.03;
                 }
             }
-            this.setSpriteForAge(this.spriteProvider);
+//            this.setSpriteForAge(this.spriteProvider);
             this.move(this.velocityX, this.velocityY, this.velocityZ);
         }
     }
@@ -85,7 +85,9 @@ public class FlowerParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new FlowerParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
+            FlowerParticle flowerParticle = new FlowerParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
+            flowerParticle.setSprite(this.spriteProvider);
+            return flowerParticle;
         }
     }
 }
