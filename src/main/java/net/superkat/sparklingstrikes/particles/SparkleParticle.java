@@ -22,7 +22,8 @@ public class SparkleParticle extends SpriteBillboardParticle {
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
-        this.angle = 1F;
+        this.angle = random.nextFloat() * (float)(2 * Math.PI);
+//        this.angle = 1.2F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
 //        this.velocityX = this.random.nextFloat() + 0.07;
 //        this.velocityY = 0;
@@ -57,7 +58,7 @@ public class SparkleParticle extends SpriteBillboardParticle {
             if (this.age <= 4) {
                 this.scale += 0.05;
             } else if (this.age - extraTime > 7) {
-                this.angle -= 0.06;
+//                this.angle -= 0.06;
 //                if (this.angle > 0) {
 //                } else if (this.angle < 0) {
 //                    SparkyStrikes.LOGGER.info("angle set to 0!");

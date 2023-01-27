@@ -22,6 +22,7 @@ public class StarParticle extends SpriteBillboardParticle {
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
+        this.angle = prevAngle = random.nextFloat() * (float) (2 * Math.PI);
 //        this.angle = 0.30F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
 //        this.velocityX = this.random.nextFloat() + 0.07;

@@ -26,7 +26,7 @@ public abstract class PlayerEntityMixin extends Entity {
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
 	private void spawnHitParticle(Entity target, CallbackInfo ci) {
 
-		LOGGER.info("spawnHitParticle has been called! (Total particles spawned: " + SparklingConfig.particleAmount);
+		LOGGER.info("spawnHitParticle has been called! (Total particles spawned: " + SparklingConfig.particleAmount + ")");
 //		LOGGER.info(String.valueOf(SparklingConfig.particleAmount));
 
 		switch (SparklingConfig.particleOption) {
