@@ -45,7 +45,10 @@ public abstract class PlayerEntityMixin extends Entity {
 
 	public void spawnParticles(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.modEnabled) {
-			LOGGER.info("spawnParticles has been called! (Total particles spawned: " + SparklingConfig.particleAmount + ")");
+			if (SparklingConfig.spamLog) {
+				LOGGER.info("spawnParticles has been called! (Total spawned: " + SparklingConfig.particleAmount + ")");
+				LOGGER.info("Mob hit = " + String.valueOf(target));
+			}
 			switch (SparklingConfig.particleOption) {
 				case SPARKLE ->
 						((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
@@ -57,13 +60,17 @@ public abstract class PlayerEntityMixin extends Entity {
 						((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
 			}
 		} else {
-			LOGGER.info("No particle(s) shown; mod enabled/disabled status: " + SparklingConfig.modEnabled);
+			if (SparklingConfig.spamLog) {
+				LOGGER.info("No particle(s) shown; mod enabled/disabled status: " + SparklingConfig.modEnabled);
+			}
 		}
 	}
 	public void spawnSecondaryParticles(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.modEnabled) {
 			if (SparklingConfig.spawnSecondaryParticle) {
-				LOGGER.info("spawnSecondaryParticles has been called! (Total particles spawned: " + SparklingConfig.secondaryParticleAmount + ")");
+				if (SparklingConfig.spamLog) {
+					LOGGER.info("spawnSecondaryParticles has been called! (Total spawned: " + SparklingConfig.secondaryParticleAmount + ")");
+				}
 				switch (SparklingConfig.secondaryParticleOption) {
 					case SPARKLE ->
 							((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);

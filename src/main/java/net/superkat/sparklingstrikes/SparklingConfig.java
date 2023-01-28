@@ -23,6 +23,6 @@ public class SparklingConfig extends MidnightConfig {
 
     @Comment(centered = true) public static Comment otherOptions;
     @Entry public static boolean modEnabled = true;
-
+    @Entry public static boolean spamLog = false;
 
 }

@@ -24,5 +24,7 @@
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FLOWER": "Flowers",
 
   "sparklingstrikes.midnightconfig.otherOptions": "Other Mod Options",
-  "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?"
+  "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",
+  "sparklingstrikes.midnightconfig.spamLog": "Debug Logs Enabled?",
+  "sparklingstrikes.midnightconfig.spamLog.tooltip": "If enabled, the mod will log info related to particles being displayed everytime you hit a mob"
 }
