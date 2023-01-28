@@ -3,6 +3,8 @@
 
   "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",
   "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
+  "sparklingstrikes.midnightconfig.spawnOnlyOnCrit": "Critical Hits Only?",
+  "sparklingstrikes.midnightconfig.spawnOnlyOnCrit.tooltip": "Only show particles on critical hits?",
 
   "sparklingstrikes.midnightconfig.particleAmount": "Particle Amount",
   "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
