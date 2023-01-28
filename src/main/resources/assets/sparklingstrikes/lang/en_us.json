@@ -1,7 +1,7 @@
 {
-  "sparklingstirkes.midnightconfig.title": "Sparkling Strikes Config",
+  "sparklingstrikes.midnightconfig.title": "Sparkling Strikes Config",
 
-  "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",
+  "sparklingstrikes.midnightconfig.primaryParticleOptions": "Primary Particle Options",
   "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
   "sparklingstrikes.midnightconfig.spawnOnlyOnCrit": "Critical Hits Only?",
   "sparklingstrikes.midnightconfig.spawnOnlyOnCrit.tooltip": "Only show particles on critical hits?",
@@ -12,5 +12,17 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.STAR": "Stars",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.HEART": "Hearts",
-  "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers"
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers",
+
+  "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
+  "sparklingstrikes.midnightconfig.spawnSecondaryOnlyOnCrit": "Critical Hits Only?",
+  "sparklingstrikes.midnightconfig.spawnSecondaryParticle": "Spawn Secondary Particles?",
+  "sparklingstrikes.midnightconfig.secondaryParticleOption": "Secondary Particle Type?",
+  "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.SPARKLE": "Sparkles",
+  "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.STAR": "Stars",
+  "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.HEART": "Hearts",
+  "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FLOWER": "Flowers",
+
+  "sparklingstrikes.midnightconfig.otherOptions": "Other Mod Options",
+  "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?"
 }

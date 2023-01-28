@@ -28,6 +28,9 @@ public abstract class PlayerEntityMixin extends Entity {
 		if (!SparklingConfig.spawnOnlyOnCrit) {
 			this.spawnParticles(target, ci);
 		}
+		if (!SparklingConfig.spawnSecondaryOnlyOnCrit) {
+			this.spawnSecondaryParticles(target, ci);
+		}
 	}
 
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;addCritParticles(Lnet/minecraft/entity/Entity;)V"))
@@ -35,11 +38,14 @@ public abstract class PlayerEntityMixin extends Entity {
 		if (SparklingConfig.spawnOnlyOnCrit) {
 			this.spawnParticles(target, ci);
 		}
+		if (SparklingConfig.spawnSecondaryOnlyOnCrit) {
+			this.spawnSecondaryParticles(target, ci);
+		}
 	}
 
 	public void spawnParticles(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.modEnabled) {
-			LOGGER.info("spawnHitParticle has been called! (Total particles spawned: " + SparklingConfig.particleAmount + ")");
+			LOGGER.info("spawnParticles has been called! (Total particles spawned: " + SparklingConfig.particleAmount + ")");
 			switch (SparklingConfig.particleOption) {
 				case SPARKLE ->
 						((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
@@ -52,6 +58,23 @@ public abstract class PlayerEntityMixin extends Entity {
 			}
 		} else {
 			LOGGER.info("No particle(s) shown; mod enabled/disabled status: " + SparklingConfig.modEnabled);
+		}
+	}
+	public void spawnSecondaryParticles(Entity target, CallbackInfo ci) {
+		if (SparklingConfig.modEnabled) {
+			if (SparklingConfig.spawnSecondaryParticle) {
+				LOGGER.info("spawnSecondaryParticles has been called! (Total particles spawned: " + SparklingConfig.secondaryParticleAmount + ")");
+				switch (SparklingConfig.secondaryParticleOption) {
+					case SPARKLE ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+					case STAR ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+					case HEART ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+					case FLOWER ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+				}
+			}
 		}
 	}
 
