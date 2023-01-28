@@ -22,8 +22,9 @@ public class SparklingMain implements ModInitializer {
     5. Add the particle texture
     6. Add the particle option in SparklingConfig
     7. Add the particle option text in en_us.json
-    8. Add the particle option in PlayerEntityMixin in the switch case, so that it can actually be used.
-    9. Celebrate! You have now added a new particle, future self!
+    8. Add the particle option in PlayerEntityMixin in the switch case, so that it can actually be used
+    9. Repeat steps 6-8, but for the secondary particle
+    10. Celebrate! You have now added a new particle, future self!
      */
 	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
 	public static final DefaultParticleType STAR = FabricParticleTypes.simple();
