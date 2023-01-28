@@ -12,7 +12,6 @@ public class FlowerParticle extends SpriteBillboardParticle {
 
     FlowerParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
-//        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 40;
         this.scale = 0.05F + this.random.nextFloat() / 12;
@@ -22,29 +21,8 @@ public class FlowerParticle extends SpriteBillboardParticle {
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
-//        this.angle = 0.30F;
-//        this.setBoundingBoxSpacing(0.02F, 0.02F);
-//        this.velocityX = this.random.nextFloat() + 0.07;
-//        this.velocityY = 0;
-//        this.velocityZ = this.random.nextFloat() + 0.07;
-//        this.startX = x;
-//        this.startY = y;
-//        this.startZ = z;
         this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
-        //The fifth number is to make it have a chance to be just white
-//        int color = this.random.nextBetween(1, 5);
-//        switch(color) {
-//            case 1 -> {
-//                this.setColor(0.8F + this.random.nextFloat() * 0.2F, 0.4F + this.random.nextFloat() * 0.3F, 0.8F + this.random.nextFloat() * 0.2F);
-//            } case 2 -> {
-//                this.setColor(0.7F + this.random.nextFloat() * 0.2F, 0.2F + this.random.nextFloat() * 0.3F, 0.6F + this.random.nextFloat() * 0.2F);
-//            } case 3 -> {
-//                this.setColor(0.8F + this.random.nextFloat() * 0.2F, 0.8F + this.random.nextFloat() * 0.3F, 0.3F + this.random.nextFloat() * 0.2F);
-//            } case 4 -> {
-//                this.setColor(0.6F + this.random.nextFloat() * 0.2F, 0.9F + this.random.nextFloat() * 0.3F, 0.1F + this.random.nextFloat() * 0.2F);
-//            }
-//        }
     }
 
     public void tick() {

@@ -13,7 +13,6 @@ public class HeartParticle extends SpriteBillboardParticle {
 
     HeartParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
-//        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 30 + extraTime;
         this.scale = 0.1F + this.random.nextFloat() / 3;
@@ -25,14 +24,6 @@ public class HeartParticle extends SpriteBillboardParticle {
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
         this.alpha = 1F;
-//        this.angle = 1F;
-//        this.setBoundingBoxSpacing(0.02F, 0.02F);
-//        this.velocityX = this.random.nextFloat() + 0.07;
-//        this.velocityY = 0;
-//        this.velocityZ = this.random.nextFloat() + 0.07;
-//        this.startX = x;
-//        this.startY = y;
-//        this.startZ = z;
         this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
         int color = this.random.nextBetween(1, 4);
@@ -64,18 +55,9 @@ public class HeartParticle extends SpriteBillboardParticle {
             if (this.age > 30 - extraTime) {
                 this.alpha -= 0.10F;
             }
-//            int extraTime = this.random.nextBetween(1, 5);
             if (this.onGround) {
                 this.scale -= 0.05;
             }
-//            if (this.age - extraTime > 15) {
-//                this.angle -= 0.06;
-//                if (this.angle > 0) {
-//                } else if (this.angle < 0) {
-//                    SparkyStrikes.LOGGER.info("angle set to 0!");
-//                    this.angle = 0;
-//                }
-//            }
             this.setSpriteForAge(this.spriteProvider);
             this.move(this.velocityX, this.velocityY, this.velocityZ);
         }

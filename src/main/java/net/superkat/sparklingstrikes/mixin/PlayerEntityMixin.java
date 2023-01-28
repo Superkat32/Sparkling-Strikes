@@ -16,8 +16,6 @@ import static net.superkat.sparklingstrikes.SparklingMain.LOGGER;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends Entity {
-//	public World world;
-
 
 	public PlayerEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
@@ -67,6 +65,7 @@ public abstract class PlayerEntityMixin extends Entity {
 			}
 		}
 	}
+
 	public void spawnSecondaryParticles(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.modEnabled) {
 			if (SparklingConfig.spawnSecondaryParticle) {

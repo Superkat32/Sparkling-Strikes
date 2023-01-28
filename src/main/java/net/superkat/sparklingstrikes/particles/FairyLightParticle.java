@@ -21,7 +21,6 @@ public class FairyLightParticle extends SpriteBillboardParticle {
 
     FairyLightParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
-//        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 40;
         this.scale = 0.05F + this.random.nextFloat() / 6;
@@ -31,14 +30,6 @@ public class FairyLightParticle extends SpriteBillboardParticle {
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
-//        this.angle = 0.30F;
-//        this.setBoundingBoxSpacing(0.02F, 0.02F);
-//        this.velocityX = this.random.nextFloat() + 0.07;
-//        this.velocityY = 0;
-//        this.velocityZ = this.random.nextFloat() + 0.07;
-//        this.startX = x;
-//        this.startY = y;
-//        this.startZ = z;
         this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
     }
