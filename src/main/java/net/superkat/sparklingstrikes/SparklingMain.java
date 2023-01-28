@@ -21,15 +21,17 @@ public class SparklingMain implements ModInitializer {
     4. Create the particle json
     5. Add the particle texture
     6. Add the particle option in SparklingConfig
-    7. Add the particle option text in en_us.json
-    8. Add the particle option in PlayerEntityMixin in the switch case, so that it can actually be used
+    7. Add the particle option in PlayerEntityMixin in the switch case, so that it can actually be used
+    8. Add the particle option text in en_us.json
     9. Repeat steps 6-8, but for the secondary particle
     10. Celebrate! You have now added a new particle, future self!
      */
+
 	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
 	public static final DefaultParticleType STAR = FabricParticleTypes.simple();
 	public static final DefaultParticleType HEART = FabricParticleTypes.simple();
 	public static final DefaultParticleType FLOWER = FabricParticleTypes.simple();
+	public static final DefaultParticleType FAIRYLIGHT = FabricParticleTypes.simple();
 
 	//TODO - Change fabric.mod.json source stuff
 	//TODO - Create icon.png
@@ -38,12 +40,10 @@ public class SparklingMain implements ModInitializer {
 		//load config
 		MidnightConfig.init(MOD_ID, SparklingConfig.class);
 
-
-
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "star"), STAR);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "heart"), HEART);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "flower"), FLOWER);
-//		LOGGER.info("Hello Fabric world!");
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "fairylight"), FAIRYLIGHT);
 	}
 }

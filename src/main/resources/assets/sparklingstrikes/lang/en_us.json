@@ -13,6 +13,7 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.STAR": "Stars",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers",
+  "sparklingstrikes.midnightconfig.enum.ParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
 
   "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
   "sparklingstrikes.midnightconfig.spawnSecondaryOnlyOnCrit": "Critical Hits Only?",
@@ -22,6 +23,7 @@
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.STAR": "Stars",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FLOWER": "Flowers",
+  "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
 
   "sparklingstrikes.midnightconfig.otherOptions": "Other Mod Options",
   "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",

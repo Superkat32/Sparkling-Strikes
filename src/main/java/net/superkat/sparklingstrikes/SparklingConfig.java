@@ -9,7 +9,7 @@ public class SparklingConfig extends MidnightConfig {
     @Entry(name = "Particle Amount",isSlider = true,min=1,max=100) public static int particleAmount = 15;
     @Entry public static ParticleOption particleOption = ParticleOption.SPARKLE;
     public enum ParticleOption {
-        SPARKLE, STAR, HEART, FLOWER
+        SPARKLE, STAR, HEART, FLOWER, FAIRYLIGHT
     }
 
     @Comment(centered = true) public static Comment secondaryParticleOptions;
@@ -18,7 +18,7 @@ public class SparklingConfig extends MidnightConfig {
     @Entry(name = "Secondary Particle Amount",isSlider=true,min=1,max=100) public static int secondaryParticleAmount = 7;
     @Entry public static SecondaryParticleOption secondaryParticleOption = SecondaryParticleOption.HEART;
     public enum SecondaryParticleOption {
-        SPARKLE, STAR, HEART, FLOWER
+        SPARKLE, STAR, HEART, FLOWER, FAIRYLIGHT
     }
 
     @Comment(centered = true) public static Comment otherOptions;

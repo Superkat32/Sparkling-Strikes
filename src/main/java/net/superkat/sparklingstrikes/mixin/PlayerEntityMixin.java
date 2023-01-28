@@ -58,6 +58,8 @@ public abstract class PlayerEntityMixin extends Entity {
 						((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
 				case FLOWER ->
 						((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+				case FAIRYLIGHT ->
+						((ServerWorld) this.world).spawnParticles(SparklingMain.FAIRYLIGHT, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
 			}
 		} else {
 			if (SparklingConfig.spamLog) {
@@ -80,6 +82,8 @@ public abstract class PlayerEntityMixin extends Entity {
 							((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
 					case FLOWER ->
 							((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+					case FAIRYLIGHT ->
+						((ServerWorld) this.world).spawnParticles(SparklingMain.FAIRYLIGHT, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
 				}
 			}
 		}
