@@ -5,24 +5,27 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
+import net.superkat.sparklingstrikes.SparklingMain;
 
 @Environment(EnvType.CLIENT)
 public class StarParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
+    private final boolean direction = this.random.nextBoolean();
 
     StarParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
 //        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 40;
-        this.scale = 0.05F + this.random.nextFloat() / 8;
+        this.scale = 0.05F + this.random.nextFloat() / 32;
         this.velocityX = velocityX;
-        this.velocityY = velocityY + 0.05;
+        this.velocityY = velocityY + 0.20F;
         this.velocityZ = velocityZ;
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
-        this.angle = prevAngle = random.nextFloat() * (float) (2 * Math.PI);
+        this.angle = 0F;
+//        this.angle = prevAngle = random.nextFloat() * (float) (2 * Math.PI);
 //        this.angle = 0.30F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
 //        this.velocityX = this.random.nextFloat() + 0.07;
@@ -36,13 +39,17 @@ public class StarParticle extends SpriteBillboardParticle {
         int color = this.random.nextBetween(1, 4);
         switch(color) {
             case 1 -> {
-                this.setColor(0.9F + this.random.nextFloat() * 0.2F, 0.4F + this.random.nextFloat() * 0.3F, 0.8F + this.random.nextFloat() * 0.2F);
+                this.setColor(1.0F, 0.8F, 0.2F);
+                SparklingMain.LOGGER.info("1");
             } case 2 -> {
-                this.setColor(0.9F + this.random.nextFloat() * 0.2F, 0.2F + this.random.nextFloat() * 0.3F, 0.6F + this.random.nextFloat() * 0.2F);
+                this.setColor(1.0F, 0.8F, 0.3F);
+                SparklingMain.LOGGER.info("2");
             } case 3 -> {
-                this.setColor(0.9F + this.random.nextFloat() * 0.2F, 0.8F + this.random.nextFloat() * 0.3F, 0.3F + this.random.nextFloat() * 0.2F);
+                this.setColor(1.0F, 0.8F, 0.2F);
+                SparklingMain.LOGGER.info("3");
             } case 4 -> {
-                this.setColor(0.6F + this.random.nextFloat() * 0.2F, 0.9F + this.random.nextFloat() * 0.3F, 0.1F + this.random.nextFloat() * 0.2F);
+                this.setColor(1.0F, 0.8F, 0.2F);
+                SparklingMain.LOGGER.info("4");
             }
         }
     }
@@ -54,17 +61,21 @@ public class StarParticle extends SpriteBillboardParticle {
         if (this.age++ >= this.maxAge || this.scale <= 0) {
             this.markDead();
         } else {
+            if (direction) {
+                this.angle = this.prevAngle -= 0.07F;
+            } else {
+                this.angle = this.prevAngle += 0.07F;
+            }
             int extraTime = this.random.nextBetween(1, 5);
-            if (this.age <= 4) {
-                this.scale += 0.05;
-            } else if (this.age - extraTime > 7) {
-//                this.angle -= 0.06;
-//                if (this.angle > 0) {
-//                } else if (this.angle < 0) {
-//                    SparkyStrikes.LOGGER.info("angle set to 0!");
-//                    this.angle = 0;
-//                }
-                this.scale -= 0.10;
+            if (this.age < 7 + extraTime) {
+                this.scale += 0.03;
+            } else if (this.age > 7 + extraTime) {
+                if (this.velocityY >= -0.50) {
+                    this.velocityY -= 0.07;
+                }
+                if (this.age > 15 + extraTime) {
+                    this.scale -= 0.035;
+                }
             }
             this.setSpriteForAge(this.spriteProvider);
             this.move(this.velocityX, this.velocityY, this.velocityZ);
