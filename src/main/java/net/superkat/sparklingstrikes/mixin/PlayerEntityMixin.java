@@ -24,7 +24,7 @@ public abstract class PlayerEntityMixin extends Entity {
 		super(type, world);
 	}
 
-	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;increaseStat(Lnet/minecraft/util/Identifier;I)V"))
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
 	private void hitEventNoCrit(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.spamLog) {
 			LOGGER.info("Sparkles to be summoned!");
