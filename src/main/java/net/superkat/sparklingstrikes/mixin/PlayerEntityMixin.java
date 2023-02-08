@@ -7,22 +7,28 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import net.superkat.sparklingstrikes.SparklingConfig;
 import net.superkat.sparklingstrikes.SparklingMain;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.superkat.sparklingstrikes.SparklingMain.LOGGER;
-
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends Entity {
+
+	@Shadow @Final private static Logger LOGGER;
 
 	public PlayerEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
 	}
 
-	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;increaseStat(Lnet/minecraft/util/Identifier;I)V"))
 	private void hitEventNoCrit(Entity target, CallbackInfo ci) {
+		if (SparklingConfig.spamLog) {
+			LOGGER.info("Sparkles to be summoned!");
+		}
 		if (!SparklingConfig.spawnOnlyOnCrit) {
 			this.spawnParticles(target, ci);
 		}
@@ -34,6 +40,9 @@ public abstract class PlayerEntityMixin extends Entity {
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;addCritParticles(Lnet/minecraft/entity/Entity;)V"))
 	private void hitEventCrit(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.spawnOnlyOnCrit) {
+			if (SparklingConfig.spamLog) {
+				LOGGER.info("Crit sparkles to be summoned!");
+			}
 			this.spawnParticles(target, ci);
 		}
 		if (SparklingConfig.spawnSecondaryOnlyOnCrit) {

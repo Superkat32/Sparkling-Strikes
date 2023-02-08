@@ -5,7 +5,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.superkat.sparklingstrikes.SparklingMain;
 
 @Environment(EnvType.CLIENT)
 public class StarParticle extends SpriteBillboardParticle {
@@ -36,20 +35,14 @@ public class StarParticle extends SpriteBillboardParticle {
 //        this.startZ = z;
         this.collidesWithWorld = false;
         this.setSpriteForAge(spriteProvider);
-        int color = this.random.nextBetween(1, 4);
+        int color = this.random.nextBetween(1, 2);
         switch(color) {
             case 1 -> {
                 this.setColor(1.0F, 0.8F, 0.2F);
-                SparklingMain.LOGGER.info("1");
+//                SparklingMain.LOGGER.info("1");
             } case 2 -> {
                 this.setColor(1.0F, 0.8F, 0.3F);
-                SparklingMain.LOGGER.info("2");
-            } case 3 -> {
-                this.setColor(1.0F, 0.8F, 0.2F);
-                SparklingMain.LOGGER.info("3");
-            } case 4 -> {
-                this.setColor(1.0F, 0.8F, 0.2F);
-                SparklingMain.LOGGER.info("4");
+//                SparklingMain.LOGGER.info("2");
             }
         }
     }
