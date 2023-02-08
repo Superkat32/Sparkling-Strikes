@@ -1,8 +1,8 @@
 package net.superkat.sparklingstrikes.mixin;
 
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import net.superkat.sparklingstrikes.SparklingConfig;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientPlayerEntity.class)
+@Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends Entity {
 
 	@Shadow @Final private static Logger LOGGER;
@@ -24,7 +24,7 @@ public abstract class PlayerEntityMixin extends Entity {
 		super(type, world);
 	}
 
-	@Inject(method = "addCritParticles", at = @At(value = "HEAD", target = "Lnet/minecraft/client/network/ClientPlayerEntity;client:Lnet/minecraft/client/MinecraftClient;"))
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
 	private void hitEventNoCrit(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.spamLog) {
 			LOGGER.info("Sparkles to be summoned!");
@@ -37,7 +37,7 @@ public abstract class PlayerEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "addCritParticles", at = @At(value = "HEAD", target = "Lnet/minecraft/client/network/ClientPlayerEntity;client:Lnet/minecraft/client/MinecraftClient;"))
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;addCritParticles(Lnet/minecraft/entity/Entity;)V"))
 	private void hitEventCrit(Entity target, CallbackInfo ci) {
 		if (SparklingConfig.spawnOnlyOnCrit) {
 			if (SparklingConfig.spamLog) {
