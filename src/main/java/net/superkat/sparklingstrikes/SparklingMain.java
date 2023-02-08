@@ -14,6 +14,9 @@ public class SparklingMain implements ModInitializer {
 	public static final String MOD_ID = "sparklingstrikes";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	//TODO - Fix multiplayer not working
+	//TODO - Add mod's repo to fabric.mod.json
+
     /*How to add a new particle.
     1. Create new DefaultParticleType
     2. Register the particle here, in SparklingMain
