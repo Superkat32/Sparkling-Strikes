@@ -29,7 +29,7 @@ public abstract class PlayerEntityMixin extends Entity {
 		super(type, world);
 	}
 
-	@Inject(method = "damage", at = @At(value = "TAIL"))
+	@Inject(method = "damage", at = @At(value = "HEAD"))
 	private void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LOGGER.info("entity has been hit!");
 		this.spawnParticles();
