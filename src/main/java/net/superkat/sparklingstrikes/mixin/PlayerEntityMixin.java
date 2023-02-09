@@ -30,7 +30,11 @@ public abstract class PlayerEntityMixin extends Entity {
 	@Inject(method = "damage", at = @At(value = "HEAD"))
 	void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LOGGER.info("entity has been hit!");
-		this.spawnParticles();
+//		((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+		this.world.addParticle(SparklingMain.SPARKLE, true, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+
+
+//		this.spawnParticles();
 	}
 //
 //	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
