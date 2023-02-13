@@ -6,7 +6,7 @@
   "sparklingstrikes.midnightconfig.spawnOnlyOnCrit": "Critical Hits Only?",
   "sparklingstrikes.midnightconfig.spawnOnlyOnCrit.tooltip": "Only show particles on critical hits?",
 
-  "sparklingstrikes.midnightconfig.particleAmount": "Particle Amount",
+  "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Due to how Minecraft handles hitting an entity, sometimes unexpected extra particles will be spawned.",
   "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
   "sparklingstrikes.midnightconfig.particleOption.tooltip": "Which particle do you want to be spawned when hitting a mob?",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
@@ -18,6 +18,7 @@
   "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
   "sparklingstrikes.midnightconfig.spawnSecondaryOnlyOnCrit": "Critical Hits Only?",
   "sparklingstrikes.midnightconfig.spawnSecondaryParticle": "Spawn Secondary Particles?",
+  "sparklingstrikes.midnightconfig.secondaryParticleAmount.tooltip": "Due to how Minecraft handles hitting an entity, sometimes unexpected extra particles will be spawned.",
   "sparklingstrikes.midnightconfig.secondaryParticleOption": "Secondary Particle Type?",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.SPARKLE": "Sparkles",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.STAR": "Stars",

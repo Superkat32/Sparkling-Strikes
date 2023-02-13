@@ -31,7 +31,7 @@ public abstract class PlayerEntityMixin extends Entity {
 	void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LOGGER.info("entity has been hit!");
 //		((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-		this.world.addParticle(SparklingMain.SPARKLE, true, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+        spawnParticles();
 
 
 //		this.spawnParticles();
@@ -66,20 +66,31 @@ public abstract class PlayerEntityMixin extends Entity {
 	public void spawnParticles() {
 		if (SparklingConfig.modEnabled) {
 			if (SparklingConfig.spamLog) {
-				LOGGER.info("spawnParticles has been called! (Total spawned: " + SparklingConfig.particleAmount + ")");
-//				LOGGER.info("Mob hit = " + String.valueOf(this.));
+				LOGGER.info("spawnParticles has been called! (Config Amount: " + SparklingConfig.particleAmount + ")");
 			}
-			switch (SparklingConfig.particleOption) {
-				case SPARKLE ->
-						((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-				case STAR ->
-						((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-				case HEART ->
-						((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-				case FLOWER ->
-						((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-				case FAIRYLIGHT ->
-						((ServerWorld) this.world).spawnParticles(SparklingMain.FAIRYLIGHT, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+			for(int spawnAmount = SparklingConfig.particleAmount / 3; spawnAmount >= 0; spawnAmount--) {
+				boolean xPosOrNegBoolean = this.random.nextBoolean();
+				boolean zPosOrNegBoolean = this.random.nextBoolean();
+				int xPosOrNeg = 1;
+				int zPosOrNeg = 1;
+				if (!xPosOrNegBoolean) {
+					xPosOrNeg = -1;
+				} if (!zPosOrNegBoolean) {
+					zPosOrNeg = -1;
+				}
+				LOGGER.info(String.valueOf(spawnAmount));
+				switch (SparklingConfig.particleOption) {
+					case SPARKLE ->
+							this.world.addParticle(SparklingMain.SPARKLE, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
+					case STAR ->
+							this.world.addParticle(SparklingMain.STAR, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
+					case HEART ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+					case FLOWER ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+					case FAIRYLIGHT ->
+							((ServerWorld) this.world).spawnParticles(SparklingMain.FAIRYLIGHT, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+				}
 			}
 		} else {
 			if (SparklingConfig.spamLog) {
