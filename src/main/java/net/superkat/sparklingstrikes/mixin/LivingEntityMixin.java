@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.world.World;
 import net.superkat.sparklingstrikes.SparklingConfig;
 import net.superkat.sparklingstrikes.SparklingMain;
@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
@@ -22,6 +21,8 @@ public abstract class LivingEntityMixin extends Entity {
 
 
 	@Shadow @Final private static Logger LOGGER;
+
+	@Shadow public abstract boolean tryAttack(Entity target);
 
 	public LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
@@ -31,7 +32,8 @@ public abstract class LivingEntityMixin extends Entity {
 	void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LOGGER.info("entity has been hit!");
 //		((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-        spawnParticles();
+        callParticles();
+		callSecondaryParticles();
 
 
 //		this.spawnParticles();
@@ -63,11 +65,8 @@ public abstract class LivingEntityMixin extends Entity {
 //		}
 //	}
 
-	public void spawnParticles() {
-		if (SparklingConfig.modEnabled) {
-			if (SparklingConfig.spamLog) {
-				LOGGER.info("spawnParticles has been called! (Config Amount: " + SparklingConfig.particleAmount + ")");
-			}
+	public void spawnParticles(boolean primary, ParticleEffect particleType) {
+		if(primary) {
 			for(int spawnAmount = SparklingConfig.particleAmount / 3; spawnAmount >= 0; spawnAmount--) {
 				//Determines which direction the particle should go in
 				boolean xPosOrNegBoolean = this.random.nextBoolean();
@@ -80,19 +79,44 @@ public abstract class LivingEntityMixin extends Entity {
 					zPosOrNeg = -1;
 				}
 				//Spawns the particle(s)
-				switch (SparklingConfig.particleOption) {
-					case SPARKLE ->
-							this.world.addParticle(SparklingMain.SPARKLE, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-					case STAR ->
-							this.world.addParticle(SparklingMain.STAR, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-					case HEART ->
-							this.world.addParticle(SparklingMain.HEART, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-					case FLOWER ->
-							this.world.addParticle(SparklingMain.FLOWER, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-					case FAIRYLIGHT ->
-							this.world.addParticle(SparklingMain.FAIRYLIGHT, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-				}
+				this.world.addParticle(particleType, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
 			}
+		} else {
+			for(int spawnAmount = SparklingConfig.secondaryParticleAmount / 3; spawnAmount >= 0; spawnAmount--) {
+				//Determines which direction the particle should go in
+				boolean xPosOrNegBoolean = this.random.nextBoolean();
+				boolean zPosOrNegBoolean = this.random.nextBoolean();
+				int xPosOrNeg = 1;
+				int zPosOrNeg = 1;
+				if (!xPosOrNegBoolean) {
+					xPosOrNeg = -1;
+				} if (!zPosOrNegBoolean) {
+					zPosOrNeg = -1;
+				}
+				this.world.addParticle(particleType, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
+			}
+		}
+	}
+
+	public void callParticles() {
+		if (SparklingConfig.modEnabled) {
+			if (SparklingConfig.spamLog) {
+				LOGGER.info("spawnParticles has been called! (Config Amount: " + SparklingConfig.particleAmount + ")");
+			}
+			ParticleEffect particle = null;
+			switch (SparklingConfig.particleOption) {
+				case SPARKLE ->
+						particle = SparklingMain.SPARKLE;
+				case STAR ->
+						particle = SparklingMain.STAR;
+				case HEART ->
+						particle = SparklingMain.HEART;
+				case FLOWER ->
+						particle = SparklingMain.FLOWER;
+				case FAIRYLIGHT ->
+						particle = SparklingMain.FAIRYLIGHT;
+			}
+			spawnParticles(true, particle);
 		} else {
 			if (SparklingConfig.spamLog) {
 				LOGGER.info("No particle(s) shown; mod enabled/disabled status: " + SparklingConfig.modEnabled);
@@ -100,24 +124,26 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	public void spawnSecondaryParticles(Entity target, CallbackInfo ci) {
+	public void callSecondaryParticles() {
 		if (SparklingConfig.modEnabled) {
 			if (SparklingConfig.spawnSecondaryParticle) {
 				if (SparklingConfig.spamLog) {
 					LOGGER.info("spawnSecondaryParticles has been called! (Total spawned: " + SparklingConfig.secondaryParticleAmount + ")");
 				}
+				ParticleEffect particle = null;
 				switch (SparklingConfig.secondaryParticleOption) {
 					case SPARKLE ->
-							((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+							particle = SparklingMain.SPARKLE;
 					case STAR ->
-							((ServerWorld) this.world).spawnParticles(SparklingMain.STAR, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+							particle = SparklingMain.STAR;
 					case HEART ->
-							((ServerWorld) this.world).spawnParticles(SparklingMain.HEART, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+							particle = SparklingMain.HEART;
 					case FLOWER ->
-							((ServerWorld) this.world).spawnParticles(SparklingMain.FLOWER, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.secondaryParticleAmount, 0.0, 0.0, 0.0, 0.07);
+							particle = SparklingMain.FLOWER;
 					case FAIRYLIGHT ->
-						((ServerWorld) this.world).spawnParticles(SparklingMain.FAIRYLIGHT, target.getX(), target.getBodyY(0.5), target.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
+							particle = SparklingMain.FAIRYLIGHT;
 				}
+				spawnParticles(true, particle);
 			}
 		}
 	}
