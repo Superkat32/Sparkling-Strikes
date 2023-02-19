@@ -3,10 +3,10 @@
 
   "sparklingstrikes.midnightconfig.primaryParticleOptions": "Primary Particle Options",
   "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
-  "sparklingstrikes.midnightconfig.spawnOnlyOnCrit": "Critical Hits Only?",
-  "sparklingstrikes.midnightconfig.spawnOnlyOnCrit.tooltip": "Only show particles on critical hits?",
+  "sparklingstrikes.midnightconfig.extraOnDeath": "Extra Particles on Death?",
+  "sparklingstrikes.midnightconfig.extraOnDeath.tooltip": "Spawn 2x particles if struck entity is killed",
 
-  "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Due to how Minecraft handles hitting an entity, particle amount might be inconsistent. This is relevant if you set the particle amount to 1.",
+  "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Please note that particle amount might be inconsistent. This is relevant if you set the particle amount to low numbers.",
   "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
   "sparklingstrikes.midnightconfig.particleOption.tooltip": "Which particle do you want to be spawned when hitting a mob?",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
@@ -16,7 +16,7 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
 
   "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
-  "sparklingstrikes.midnightconfig.spawnSecondaryOnlyOnCrit": "Critical Hits Only?",
+  "sparklingstrikes.midnightconfig.extraSecondaryOnDeath": "Extra Particles on Death?",
   "sparklingstrikes.midnightconfig.spawnSecondaryParticle": "Spawn Secondary Particles?",
   "sparklingstrikes.midnightconfig.secondaryParticleAmount.tooltip": "Due to how Minecraft handles hitting an entity, particle amount might be inconsistent. This is relevant if you set the particle amount to 1.",
   "sparklingstrikes.midnightconfig.secondaryParticleOption": "Secondary Particle Type?",
