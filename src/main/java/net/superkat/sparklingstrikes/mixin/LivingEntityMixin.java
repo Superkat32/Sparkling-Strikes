@@ -25,8 +25,6 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Shadow public abstract boolean tryAttack(Entity target);
 
-	@Shadow public abstract boolean blockedByShield(DamageSource source);
-
 	@Shadow public abstract float getHealth();
 
 	public LivingEntityMixin(EntityType<?> type, World world) {
