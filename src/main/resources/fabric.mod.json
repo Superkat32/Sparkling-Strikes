@@ -13,7 +13,7 @@
 	},
 	"license": "MIT",
 	"icon": "assets/sparklingstrikes/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"net.superkat.sparklingstrikes.SparklingMain"
