@@ -27,30 +27,38 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Shadow public abstract float getHealth();
 
-	public LivingEntityMixin(EntityType<?> type, World world) {
+    @Shadow protected float lastDamageTaken;
+
+    public LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
 	}
 
 	@Inject(method = "damage", at = @At(value = "HEAD"))
 	void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		Entity entity = source.getSource();
-		if (entity instanceof PlayerEntity) {
+		if (!SparklingConfig.onlyIfPlayer) {
 			if(SparklingConfig.spamLog) {
-				LOGGER.info("entity has been hit!");
+				LOGGER.info("Entity has been hit!");
+				LOGGER.info("Only If Player is disabled!");
 			}
-	//		((ServerWorld) this.world).spawnParticles(SparklingMain.SPARKLE, this.getX(), this.getBodyY(0.5), this.getZ(), SparklingConfig.particleAmount, 0.0, 0.0, 0.0, 0.07);
-			boolean primaryDeath = false;
-			boolean secondaryDeath = false;
-			if(this.getHealth() - amount <= 0) {
-				LOGGER.info("entity became dead");
-				if(SparklingConfig.extraOnDeath) {
-					primaryDeath = true;
-				} if (SparklingConfig.extraSecondaryOnDeath) {
-					secondaryDeath = true;
+			callParticles();
+		} if (!SparklingConfig.secondaryOnlyIfPlayer) {
+			if(SparklingConfig.spamLog) {
+				LOGGER.info("Entity has been hit!");
+				LOGGER.info("Secondary Only If Player is disabled!");
+			}
+			callSecondaryParticles();
+		} if(SparklingConfig.onlyIfPlayer || SparklingConfig.secondaryOnlyIfPlayer) {
+				if(entity instanceof PlayerEntity) {
+					if(SparklingConfig.spamLog) {
+						LOGGER.info("Entity has been hit!");
+					}
+					if(SparklingConfig.onlyIfPlayer) {
+						callParticles();
+					} if (SparklingConfig.secondaryOnlyIfPlayer) {
+						callSecondaryParticles();
+					}
 				}
-			}
-			callParticles(primaryDeath);
-			callSecondaryParticles(secondaryDeath);
 		}
 	}
 //
@@ -80,54 +88,38 @@ public abstract class LivingEntityMixin extends Entity {
 //		}
 //	}
 
-	public void spawnParticles(boolean primary, boolean didDie, ParticleEffect particleType) {
-		if(primary) {
-			int spawnAmount = SparklingConfig.particleAmount;
-			if(didDie) {
-				if(SparklingConfig.spamLog) {
-					LOGGER.info("didDie");
-				}
-				spawnAmount	= SparklingConfig.particleAmount * 2;
+	public void spawnParticles(boolean primary, int amount, ParticleEffect particleType) {
+		for(int totalAmount = amount; totalAmount >= 1; totalAmount--) {
+			//Determines which direction the particle should go in
+			boolean xPosOrNegBoolean = this.random.nextBoolean();
+			boolean zPosOrNegBoolean = this.random.nextBoolean();
+			int xPosOrNeg = 1;
+			int zPosOrNeg = 1;
+			if (!xPosOrNegBoolean) {
+				xPosOrNeg = -1;
+			} if (!zPosOrNegBoolean) {
+				zPosOrNeg = -1;
 			}
-			for(int amount = spawnAmount; amount >= 1; amount--) {
-				//Determines which direction the particle should go in
-				boolean xPosOrNegBoolean = this.random.nextBoolean();
-				boolean zPosOrNegBoolean = this.random.nextBoolean();
-				int xPosOrNeg = 1;
-				int zPosOrNeg = 1;
-				if (!xPosOrNegBoolean) {
-					xPosOrNeg = -1;
-				} if (!zPosOrNegBoolean) {
-					zPosOrNeg = -1;
-				}
-				//Spawns the particle(s)
-				this.world.addParticle(particleType, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-			}
-		} else {
-			int spawnAmount = SparklingConfig.secondaryParticleAmount;
-			if(didDie) {
-				if(SparklingConfig.spamLog) {
-					LOGGER.info("didDie2");
-				}
-				spawnAmount	= SparklingConfig.secondaryParticleAmount * 2;
-			}
-			for(int amount = spawnAmount; amount >= 1; amount--) {
-				//Determines which direction the particle should go in
-				boolean xPosOrNegBoolean = this.random.nextBoolean();
-				boolean zPosOrNegBoolean = this.random.nextBoolean();
-				int xPosOrNeg = 1;
-				int zPosOrNeg = 1;
-				if (!xPosOrNegBoolean) {
-					xPosOrNeg = -1;
-				} if (!zPosOrNegBoolean) {
-					zPosOrNeg = -1;
-				}
-				this.world.addParticle(particleType, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
-			}
+			//Spawns the particle(s)
+			this.world.addParticle(particleType, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
 		}
 	}
 
-	public void callParticles(boolean didDie) {
+	public void determineParticleAmount(boolean primary, ParticleEffect particleType) {
+		int spawnAmount = 0;
+		LOGGER.info(String.valueOf(spawnAmount));
+		if(primary) {
+			spawnAmount = SparklingConfig.particleAmount;
+			LOGGER.info(String.valueOf(spawnAmount));
+			spawnParticles(true, spawnAmount, particleType);
+		} else {
+			spawnAmount = SparklingConfig.secondaryParticleAmount;
+			LOGGER.info(String.valueOf(spawnAmount));
+			spawnParticles(false, spawnAmount, particleType);
+		}
+	}
+
+	public void callParticles() {
 		if (SparklingConfig.modEnabled) {
 			if (SparklingConfig.spamLog) {
 				LOGGER.info("spawnParticles has been called! (Config Amount: " + SparklingConfig.particleAmount + ")");
@@ -145,7 +137,7 @@ public abstract class LivingEntityMixin extends Entity {
 				case FAIRYLIGHT ->
 						particle = SparklingMain.FAIRYLIGHT;
 			}
-			spawnParticles(true, didDie, particle);
+			determineParticleAmount(true, particle);
 		} else {
 			if (SparklingConfig.spamLog) {
 				LOGGER.info("No particle(s) shown; mod enabled/disabled status: " + SparklingConfig.modEnabled);
@@ -153,7 +145,7 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	public void callSecondaryParticles(boolean didDie) {
+	public void callSecondaryParticles() {
 		if (SparklingConfig.modEnabled) {
 			if (SparklingConfig.spawnSecondaryParticle) {
 				if (SparklingConfig.spamLog) {
@@ -172,7 +164,7 @@ public abstract class LivingEntityMixin extends Entity {
 					case FAIRYLIGHT ->
 							particle = SparklingMain.FAIRYLIGHT;
 				}
-				spawnParticles(false, didDie, particle);
+				determineParticleAmount(false, particle);
 			}
 		}
 	}

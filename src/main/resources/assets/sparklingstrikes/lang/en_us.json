@@ -2,10 +2,6 @@
   "sparklingstrikes.midnightconfig.title": "Sparkling Strikes Config",
 
   "sparklingstrikes.midnightconfig.primaryParticleOptions": "Primary Particle Options",
-  "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
-  "sparklingstrikes.midnightconfig.extraOnDeath": "Extra Particles on Death?",
-  "sparklingstrikes.midnightconfig.extraOnDeath.tooltip": "Spawn 2x particles if struck entity is killed",
-
   "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Please note that particle amount might be inconsistent. This is relevant if you set the particle amount to low numbers.",
   "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
   "sparklingstrikes.midnightconfig.particleOption.tooltip": "Which particle do you want to be spawned when hitting a mob?",
@@ -14,9 +10,10 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
+  "sparklingstrikes.midnightconfig.onlyIfPlayer": "Only If Damage Source Is A Player?",
+  "sparklingstrikes.midnightconfig.onlyIfPlayer.tooltip": "Only spawn the particles if the source of damage is a player",
 
   "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
-  "sparklingstrikes.midnightconfig.extraSecondaryOnDeath": "Extra Particles on Death?",
   "sparklingstrikes.midnightconfig.spawnSecondaryParticle": "Spawn Secondary Particles?",
   "sparklingstrikes.midnightconfig.secondaryParticleAmount.tooltip": "Due to how Minecraft handles hitting an entity, particle amount might be inconsistent. This is relevant if you set the particle amount to 1.",
   "sparklingstrikes.midnightconfig.secondaryParticleOption": "Secondary Particle Type?",
@@ -25,9 +22,11 @@
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
+  "sparklingstrikes.midnightconfig.secondaryOnlyIfPlayer": "Only If Damage Source Is A Player?",
 
   "sparklingstrikes.midnightconfig.otherOptions": "Other Mod Options",
   "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",
+  "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
   "sparklingstrikes.midnightconfig.spamLog": "Debug Logs Enabled?",
   "sparklingstrikes.midnightconfig.spamLog.tooltip": "If enabled, the mod will log info related to particles being displayed everytime you hit a mob"
 }
