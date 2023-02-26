@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "net.superkat.sparklingstrikes.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"LivingEntityMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "net.superkat.sparklingstrikes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
