@@ -19,14 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
-
-
 	@Shadow @Final private static Logger LOGGER;
-
 	@Shadow public abstract boolean tryAttack(Entity target);
-
 	@Shadow public abstract float getHealth();
-
     @Shadow protected float lastDamageTaken;
 
     public LivingEntityMixin(EntityType<?> type, World world) {
