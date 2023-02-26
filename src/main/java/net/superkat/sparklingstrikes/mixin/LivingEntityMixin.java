@@ -102,14 +102,14 @@ public abstract class LivingEntityMixin extends Entity {
 
 	public void determineParticleAmount(boolean primary, ParticleEffect particleType) {
 		int spawnAmount = 0;
-		LOGGER.info(String.valueOf(spawnAmount));
+//		LOGGER.info(String.valueOf(spawnAmount));
 		if(primary) {
 			spawnAmount = SparklingConfig.particleAmount;
-			LOGGER.info(String.valueOf(spawnAmount));
+//			LOGGER.info(String.valueOf(spawnAmount));
 			spawnParticles(true, spawnAmount, particleType);
 		} else {
 			spawnAmount = SparklingConfig.secondaryParticleAmount;
-			LOGGER.info(String.valueOf(spawnAmount));
+//			LOGGER.info(String.valueOf(spawnAmount));
 			spawnParticles(false, spawnAmount, particleType);
 		}
 	}
