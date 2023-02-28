@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity {
 	@Shadow public abstract float getHealth();
     @Shadow protected float lastDamageTaken;
 
-    public LivingEntityMixin(EntityType<?> type, World world) {
+	public LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
 	}
 
