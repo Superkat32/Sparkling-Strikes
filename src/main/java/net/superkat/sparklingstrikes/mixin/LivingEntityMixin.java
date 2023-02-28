@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
@@ -56,6 +57,18 @@ public abstract class LivingEntityMixin extends Entity {
 				}
 		}
 	}
+	
+	@Inject(method = "handleStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
+	public void plswork(byte status, CallbackInfo ci) {
+		LOGGER.info("pls work");
+		this.world.addParticle(
+				SparklingMain.FLOWER, true,
+				this.getX(), this.getY() + 0.5, this.getZ(),
+				0.07 + this.random.nextFloat() / this.random.nextBetween(7, 20),
+				0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20),
+				0.07 + this.random.nextFloat() / this.random.nextBetween(7, 20)
+		);
+	}
 //
 //	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
 //	private void hitEventNoCrit(Entity target, CallbackInfo ci) {
@@ -83,7 +96,7 @@ public abstract class LivingEntityMixin extends Entity {
 //		}
 //	}
 
-	public void spawnParticles(boolean primary, int amount, ParticleEffect particleType) {
+	public void spawnParticles(boolean primary, int amount, ParticleEffect particleType) {		
 		for(int totalAmount = amount; totalAmount >= 1; totalAmount--) {
 			//Determines which direction the particle should go in
 			boolean xPosOrNegBoolean = this.random.nextBoolean();
