@@ -96,7 +96,13 @@ public abstract class LivingEntityMixin extends Entity {
 				zPosOrNeg = -1;
 			}
 			//Spawns the particle(s)
-			this.world.addParticle(particleType, true, this.getX(), this.getY() + 0.5, this.getZ(), 0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20), 0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20), 0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20));
+			this.world.addParticle(
+                    particleType, true,
+                    this.getX(), this.getY() + 0.5, this.getZ(),
+                    0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20),
+                    0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20),
+                    0.07 * zPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20)
+            );
 		}
 	}
 
