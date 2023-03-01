@@ -18,9 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 	@Shadow @Final private static Logger LOGGER;
-//	@Shadow public abstract boolean tryAttack(Entity target);
-//	@Shadow public abstract float getHealth();
-//    @Shadow protected float lastDamageTaken;
 
 	public LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
@@ -64,32 +61,6 @@ public abstract class LivingEntityMixin extends Entity {
 		callParticles();
 		callSecondaryParticles();
 	}
-//
-//	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
-//	private void hitEventNoCrit(Entity target, CallbackInfo ci) {
-//		if (SparklingConfig.spamLog) {
-//			LOGGER.info("Sparkles to be summoned!");
-//		}
-//		if (!SparklingConfig.spawnOnlyOnCrit) {
-//			this.spawnParticles(target, ci);
-//		}
-//		if (!SparklingConfig.spawnSecondaryOnlyOnCrit) {
-//			this.spawnSecondaryParticles(target, ci);
-//		}
-//	}
-//
-//	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;addCritParticles(Lnet/minecraft/entity/Entity;)V"))
-//	private void hitEventCrit(Entity target, CallbackInfo ci) {
-//		if (SparklingConfig.spawnOnlyOnCrit) {
-//			if (SparklingConfig.spamLog) {
-//				LOGGER.info("Crit sparkles to be summoned!");
-//			}
-//			this.spawnParticles(target, ci);
-//		}
-//		if (SparklingConfig.spawnSecondaryOnlyOnCrit) {
-//			this.spawnSecondaryParticles(target, ci);
-//		}
-//	}
 
 	public void spawnParticles(boolean primary, int amount, ParticleEffect particleType) {
 		if(SparklingConfig.spamLog) {
