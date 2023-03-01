@@ -10,7 +10,6 @@ public class SparklingConfig extends MidnightConfig {
     public enum ParticleOption {
         SPARKLE, STAR, HEART, FLOWER, FAIRYLIGHT
     }
-    @Entry public static boolean onlyIfPlayer = true;
 
     @Comment(centered = true) public static Comment secondaryParticleOptions;
     @Entry public static boolean spawnSecondaryParticle = false;
@@ -19,7 +18,6 @@ public class SparklingConfig extends MidnightConfig {
     public enum SecondaryParticleOption {
         SPARKLE, STAR, HEART, FLOWER, FAIRYLIGHT
     }
-    @Entry public static boolean secondaryOnlyIfPlayer = true;
 
     @Comment(centered = true) public static Comment otherOptions;
     @Entry public static boolean modEnabled = true;

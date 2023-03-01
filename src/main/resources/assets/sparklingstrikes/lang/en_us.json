@@ -10,8 +10,6 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
-  "sparklingstrikes.midnightconfig.onlyIfPlayer": "Only If Damage Source Is A Player?",
-  "sparklingstrikes.midnightconfig.onlyIfPlayer.tooltip": "Only spawn the particles if the source of damage is a player",
 
   "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
   "sparklingstrikes.midnightconfig.spawnSecondaryParticle": "Spawn Secondary Particles?",
@@ -22,7 +20,6 @@
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.HEART": "Hearts",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
-  "sparklingstrikes.midnightconfig.secondaryOnlyIfPlayer": "Only If Damage Source Is A Player?",
 
   "sparklingstrikes.midnightconfig.otherOptions": "Other Mod Options",
   "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",

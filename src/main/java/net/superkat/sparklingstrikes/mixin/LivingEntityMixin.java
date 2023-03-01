@@ -3,8 +3,6 @@ package net.superkat.sparklingstrikes.mixin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.world.World;
 import net.superkat.sparklingstrikes.SparklingConfig;
@@ -16,58 +14,55 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 	@Shadow @Final private static Logger LOGGER;
-	@Shadow public abstract boolean tryAttack(Entity target);
-	@Shadow public abstract float getHealth();
-    @Shadow protected float lastDamageTaken;
+//	@Shadow public abstract boolean tryAttack(Entity target);
+//	@Shadow public abstract float getHealth();
+//    @Shadow protected float lastDamageTaken;
 
 	public LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
 	}
 
-	@Inject(method = "damage", at = @At(value = "HEAD"))
-	void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		Entity entity = source.getSource();
-		if (!SparklingConfig.onlyIfPlayer) {
-			if(SparklingConfig.spamLog) {
-				LOGGER.info("Entity has been hit!");
-				LOGGER.info("Only If Player is disabled!");
-			}
-			callParticles();
-		} if (!SparklingConfig.secondaryOnlyIfPlayer) {
-			if(SparklingConfig.spamLog) {
-				LOGGER.info("Entity has been hit!");
-				LOGGER.info("Secondary Only If Player is disabled!");
-			}
-			callSecondaryParticles();
-		} if(SparklingConfig.onlyIfPlayer || SparklingConfig.secondaryOnlyIfPlayer) {
-				if(entity instanceof PlayerEntity) {
-					if(SparklingConfig.spamLog) {
-						LOGGER.info("Entity has been hit!");
-					}
-					if(SparklingConfig.onlyIfPlayer) {
-						callParticles();
-					} if (SparklingConfig.secondaryOnlyIfPlayer) {
-						callSecondaryParticles();
-					}
-				}
-		}
-	}
+//	@Inject(method = "damage", at = @At(value = "HEAD"))
+//	void hitEvent(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+//		Entity entity = source.getSource();
+//		if (!SparklingConfig.onlyIfPlayer) {
+//			if(SparklingConfig.spamLog) {
+//				LOGGER.info("Entity has been hit!");
+//				LOGGER.info("Only If Player is disabled!");
+//			}
+//			callParticles();
+//		} if (!SparklingConfig.secondaryOnlyIfPlayer) {
+//			if(SparklingConfig.spamLog) {
+//				LOGGER.info("Entity has been hit!");
+//				LOGGER.info("Secondary Only If Player is disabled!");
+//			}
+//			callSecondaryParticles();
+//		} if(SparklingConfig.onlyIfPlayer || SparklingConfig.secondaryOnlyIfPlayer) {
+//				if(entity instanceof PlayerEntity) {
+//					if(SparklingConfig.spamLog) {
+//						LOGGER.info("Entity has been hit!");
+//					}
+//					if(SparklingConfig.onlyIfPlayer) {
+//						callParticles();
+//					} if (SparklingConfig.secondaryOnlyIfPlayer) {
+//						callSecondaryParticles();
+//					}
+//				}
+//		}
+//	}
 	
 	@Inject(method = "handleStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
 	public void plswork(byte status, CallbackInfo ci) {
 		LOGGER.info("pls work");
-		this.world.addParticle(
-				SparklingMain.FLOWER, true,
-				this.getX(), this.getY() + 0.5, this.getZ(),
-				0.07 + this.random.nextFloat() / this.random.nextBetween(7, 20),
-				0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20),
-				0.07 + this.random.nextFloat() / this.random.nextBetween(7, 20)
-		);
+		if(SparklingConfig.spamLog) {
+			LOGGER.info("Entity has been hit! Calling particles...");
+		}
+		callParticles();
+		callSecondaryParticles();
 	}
 //
 //	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnParticles(Lnet/minecraft/particle/ParticleEffect;DDDIDDDD)I"))
@@ -96,7 +91,10 @@ public abstract class LivingEntityMixin extends Entity {
 //		}
 //	}
 
-	public void spawnParticles(boolean primary, int amount, ParticleEffect particleType) {		
+	public void spawnParticles(boolean primary, int amount, ParticleEffect particleType) {
+		if(SparklingConfig.spamLog) {
+			LOGGER.info("Spawning particles!");
+		}
 		for(int totalAmount = amount; totalAmount >= 1; totalAmount--) {
 			//Determines which direction the particle should go in
 			boolean xPosOrNegBoolean = this.random.nextBoolean();
