@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
+import net.superkat.sparklingstrikes.SparklingMain;
 
 @Environment(EnvType.CLIENT)
 public class FlowerParticle extends SpriteBillboardParticle {
@@ -21,6 +22,7 @@ public class FlowerParticle extends SpriteBillboardParticle {
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();
+        this.angle = 0F;
         this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
     }
@@ -32,17 +34,38 @@ public class FlowerParticle extends SpriteBillboardParticle {
         if (this.age++ >= this.maxAge || this.scale <= 0) {
             this.markDead();
         } else {
+            if(this.age >= this.maxAge / 4) {
+                this.angle = this.prevAngle -= 0.07F;
+                this.velocityX -= 0.009;
+                this.velocityZ -= 0.009;
+                SparklingMain.LOGGER.info("going twice!");
+            } else {
+                this.angle = this.prevAngle += 0.07F;
+                this.velocityX += .0027;
+                this.velocityZ += .0027;
+                SparklingMain.LOGGER.info("going once!");
+            }
             int extraTime = this.random.nextBetween(1, 5);
             if (this.age <= 7) {
-                this.scale += 0.03;
+                this.scale += 0.03F;
             } else if (this.age - extraTime > 13) {
                 if (this.alpha <= 0) {
                     this.markDead();
                 } else {
                     this.alpha -= 0.05;
-                    this.velocityX *= 1.03;
+//                    this.velocityX *= 1.03;
                     this.velocityY -= 0.01;
-                    this.velocityZ *= 1.03;
+//                    if(swayDirectionX == 0) {
+//                        this.angle = this.prevAngle += 0.07F;
+//                        this.velocityZ *= 1.03;
+//                        swayDirectionX += 0.1;
+//                    }
+//                    if(swayDirectionX == 1) {
+//                        this.angle = this.prevAngle -= 0.07F;
+//                        this.velocityZ /= 1.03;
+//                        swayDirectionX -= 0.05;
+//                    }
+//                    this.velocityZ *= 1.03;
                 }
             }
 //            this.setSpriteForAge(this.spriteProvider);
