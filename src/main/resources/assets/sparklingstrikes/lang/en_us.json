@@ -2,7 +2,7 @@
   "sparklingstrikes.midnightconfig.title": "Sparkling Strikes Config",
 
   "sparklingstrikes.midnightconfig.primaryParticleOptions": "Primary Particle Options",
-  "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Please note that particle amount might be inconsistent. This is relevant if you set the particle amount to low numbers.",
+  "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Note: Particle amount might be inconsistent. This is relevant if you set the particle amount to low numbers.",
   "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
   "sparklingstrikes.midnightconfig.particleOption.tooltip": "Which particle do you want to be spawned when hitting a mob?",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.SPARKLE": "Sparkles",
@@ -25,5 +25,5 @@
   "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",
   "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
   "sparklingstrikes.midnightconfig.spamLog": "Debug Logs Enabled?",
-  "sparklingstrikes.midnightconfig.spamLog.tooltip": "If enabled, the mod will log info related to particles being displayed everytime you hit a mob"
+  "sparklingstrikes.midnightconfig.spamLog.tooltip": "WARNING: Will spam your log!"
 }
