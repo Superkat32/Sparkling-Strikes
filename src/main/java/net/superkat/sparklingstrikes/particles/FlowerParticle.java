@@ -5,7 +5,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.superkat.sparklingstrikes.SparklingMain;
 
 @Environment(EnvType.CLIENT)
 public class FlowerParticle extends SpriteBillboardParticle {
@@ -38,12 +37,10 @@ public class FlowerParticle extends SpriteBillboardParticle {
                 this.angle = this.prevAngle -= 0.07F;
                 this.velocityX -= 0.009;
                 this.velocityZ -= 0.009;
-                SparklingMain.LOGGER.info("going twice!");
             } else {
                 this.angle = this.prevAngle += 0.07F;
                 this.velocityX += .0027;
                 this.velocityZ += .0027;
-                SparklingMain.LOGGER.info("going once!");
             }
             int extraTime = this.random.nextBetween(1, 5);
             if (this.age <= 7) {
