@@ -53,8 +53,7 @@ public abstract class LivingEntityMixin extends Entity {
 //	}
 	
 	@Inject(method = "handleStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
-	public void plswork(byte status, CallbackInfo ci) {
-		LOGGER.info("pls work");
+	public void hitEvent(byte status, CallbackInfo ci) {
 		if(SparklingConfig.spamLog) {
 			LOGGER.info("Entity has been hit! Calling particles...");
 		}
