@@ -78,7 +78,7 @@ public abstract class LivingEntityMixin extends Entity {
 			}
 			//Spawns the particle(s)
 			this.world.addParticle(
-                    particleType, true,
+                    particleType, false,
                     this.getX(), this.getY() + 0.5, this.getZ(),
                     0.07 * xPosOrNeg + this.random.nextFloat() / this.random.nextBetween(7, 20),
                     0.05 + this.random.nextFloat() / this.random.nextBetween(8, 20),
