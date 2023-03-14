@@ -21,12 +21,12 @@ public class SparklingMain implements ModInitializer {
     1. Create new DefaultParticleType
     2. Register the particle here, in SparklingMain
     3. Register the particle in SparklingClient (Don't forget about the factory if you want it!)
-    4. Create the particle json
+    4. Create the particle json file
     5. Add the particle texture
-    6. Add the particle option in SparklingConfig
-    7. Add the particle option in LivingEntityMixin in the switch case, so that it can actually be used
-    8. Add the particle option text in en_us.json
-    9. Repeat steps 6-8, but for the secondary particle
+    6. Add the particle option to SparklingConfig
+    7. Add the particle option to LivingEntityMixin in the switch case, so that it can actually be used in-game
+    8. Add the particle option text to en_us.json
+    9. Repeat steps 6-8 for the secondary particle
     10. Celebrate! You have now added a new particle, future self!
      */
 
