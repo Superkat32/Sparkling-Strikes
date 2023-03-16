@@ -1,6 +1,7 @@
 {
   "sparklingstrikes.midnightconfig.title": "Sparkling Strikes Config",
 
+  "sparklingstrikes.midnightconfig.category.primary": "Primary",
   "sparklingstrikes.midnightconfig.primaryParticleOptions": "Primary Particle Options",
   "sparklingstrikes.midnightconfig.particleAmount.tooltip": "Note: Particle amount might be inconsistent. This is relevant if you set the particle amount to low numbers.",
   "sparklingstrikes.midnightconfig.particleOption": "Particle Type?",
@@ -11,6 +12,7 @@
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.ParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
 
+  "sparklingstrikes.midnightconfig.category.secondary": "Secondary",
   "sparklingstrikes.midnightconfig.secondaryParticleOptions": "Secondary Particle Options",
   "sparklingstrikes.midnightconfig.spawnSecondaryParticle": "Spawn Secondary Particles?",
   "sparklingstrikes.midnightconfig.secondaryParticleAmount.tooltip": "Due to how Minecraft handles hitting an entity, particle amount might be inconsistent. This is relevant if you set the particle amount to 1.",
@@ -21,6 +23,7 @@
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FLOWER": "Flowers",
   "sparklingstrikes.midnightconfig.enum.SecondaryParticleOption.FAIRYLIGHT": "RGB Fairy Lights",
 
+  "sparklingstrikes.midnightconfig.category.other": "Other",
   "sparklingstrikes.midnightconfig.otherOptions": "Other Mod Options",
   "sparklingstrikes.midnightconfig.modEnabled": "Mod Enabled?",
   "sparklingstrikes.midnightconfig.modEnabled.tooltip": "Should the mod be enabled?",
